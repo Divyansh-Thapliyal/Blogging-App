@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState,useEffect } from 'react';
+import img1 from '../../img-1.jpeg'
 const SideBar = () => {
 
 

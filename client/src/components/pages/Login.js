@@ -25,7 +25,7 @@ const Login = () => {
          <input className='m-2' type="text" placeholder='Enter your username....' value={username} onChange={(e)=>setUserName(e.target.value)}/><br></br>
          <label className='m-2'>Password</label><br></br>
          <input className='m-2' type="password" placeholder='Enter your password....' value={password} onChange={(e)=>setPassword(e.target.value)} /><br></br>
-         <button type="submit" className={`rounded-md p-3 text-white text-center w-44 bg-red-400 m-4 ${isFetching && 'opacity-20 bg-black'}`} disabled={isFetching}>Login</button><br></br>
+         <button type="submit" className={`rounded-md p-3 text-white text-center w-44 bg-red-400 m-4 ${'opacity-20 bg-black'}`} >Login</button><br></br>
       </form>
       </div>
       <div className='flex justify-center'>
