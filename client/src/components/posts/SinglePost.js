@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import axios from 'axios';
 import {useLocation} from 'react-router';
 import {useState} from 'react';
+import { Context } from '../../context/Context';
 
 const SinglePost = () => {
 
@@ -15,13 +16,57 @@ const SinglePost = () => {
   const [desc,setDesc]=useState("");
   const [updateMode,setUpdateMode]=useState(false);
   
-  
+
+  const {user}=useContext(Context)
+  const PF='http://localhost:5000/images/';
+
+
+
+  const getPostByUserId= async()=>
+  {
+     const res=await axios.get('/api/posts/'+path);
+     setPost(res.data);
+     setTitle(post.title);
+     setDesc(post.desc);
+  }
+  useEffect(()=>
+  {
+       getPostByUserId();
+  },[path]);
+
+  const handleEdit=async()=>
+  {
+     try{
+    
+         await axios.put(`/api/posts/${post._id}`,{data:{username:user.username,title:title,desc:desc}});
+         window.location.replace("/");
+        
+     }
+     catch(err)
+     {
+        
+          alert(err);
+      
+     }
+  }
+  const handleDelete=async ()=>
+  {
+      try
+      {
+          await axios.delete('/api/posts/'+path,{data:{username:user.username}}); // in delete we need to send like this.
+          window.location.replace("/");
+      }
+      catch(err)
+      {
+
+      }
+  }
   return (
     <div className='flex-col m-2'>
       
       {post.photo &&
       <div className='m-2'>
-         <img src={post.photo} className='h-64 w-full rounded-md'/>
+         <img src={PF+post.photo} className='h-64 w-full rounded-md'/>
       </div>
       }
 

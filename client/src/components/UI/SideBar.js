@@ -1,9 +1,21 @@
 import React from 'react'
+import img1 from '../../img-1.jpeg';
+import axios from 'axios';
 import { useState,useEffect } from 'react';
-import img1 from '../../img-1.jpeg'
 const SideBar = () => {
 
+  const [cats,setCats]=useState([]);
 
+  useEffect(()=>{
+    
+    const getCats=async()=>
+    {
+         const res=await axios.get('/api/categories');
+         setCats(res.data);
+    }
+
+    getCats();
+  },[])
   return (
     <div className='flex-col justify-end w-fit bg-gray-200 p-4 mr-2 m-2'>
         <div className=' flex-col m-2 '>
@@ -23,17 +35,18 @@ const SideBar = () => {
       <hr className='border-2 border-gray-600 w-1/2 mr-auto ml-auto'></hr>
     <div className='flex justify-center'>
         <div className='flex-col m-4'>
-        <p>Life</p>
+        {/* <p>Life</p>
         <p>Music</p>
-        <p>Style</p>
+        <p>Style</p> */}
         
+        {cats.map((c)=><span><a href={`/?cat=${c.name}`}>{c.name}</a></span>)}
         
         </div>
-         <div className='flex-col m-4'>
+        {/* <div className='flex-col m-4'>
         <p>Sport</p>
         <p>Study</p>
         <p>Study</p>
-        </div>
+        </div> */}
 
     </div>
     <div className='flex-col'>

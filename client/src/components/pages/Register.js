@@ -16,6 +16,26 @@ const Register = () => {
   {
     e.preventDefault();
     
+    try
+    {
+      setErr(false);
+    const res= await axios.post('/api/auth/register',
+    {
+      username:username,
+      email,
+      password
+    });
+     // Lets go to login page now.
+      res.data && window.location.replace('/login');
+    }
+    catch(err)
+    {
+      // console.log(err);
+      setErr(true);
+    }
+
+    
+
   }
   return ( 
     <>

@@ -1,12 +1,14 @@
 import React from 'react'
 const Post = (props) => {
   
+   const PF='http://localhost:5000/images/';
+   // to be able to use PF+props.post.photo I need to add few lines in index.js of api.
 
   return (
     <div className='flex-col w-5/12 justify-center m-4'>
       
       <div className='flex rounded-md justify-center'>
-        <img src=""  className='rounded-md w-96'/>
+        <img src={PF+props.post.photo}  className='rounded-md w-96'/>
       </div>
       <div className='flex justify-center text-gray-500'>
         {/* <p className='m-2'>Music</p>
